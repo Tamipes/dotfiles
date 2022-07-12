@@ -1,0 +1,4 @@
+--load-config neofetch
+--logo-height 20 
+--load-config neofetch 
+--logo-padding 2
