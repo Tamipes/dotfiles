@@ -1,4 +1,13 @@
 --load-config neofetch
 --logo-height 20 
---load-config neofetch 
 --logo-padding 2
+--color magenta
+--logo-color-1 magenta
+--logo-color-2 red
+--logo-color-3 green
+--logo-color-4 yellow
+--logo-color-5 blue
+--logo-color-6 magenta
+#--logo-color-7 
+#--logo-color-8
+#--logo-color-9 
