@@ -22,6 +22,11 @@ rm $HOME/.config/fish -r
 ln -s $dir/fish $HOME/.config/
 
 # Tmux
+mkdir $HOME/.config/tmux
 rm $HOME/.config/tmux/tmux.conf
 ln -s $dir/tmux.conf $HOME/.config/tmux/tmux.conf
 
+# Helix
+rm $HOME/.config/helix/config.toml
+mkdir $HOME/.config/helix
+ln -s $dir/helix/config.toml $HOME/.config/helix/config.toml
