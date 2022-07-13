@@ -30,3 +30,8 @@ ln -s $dir/tmux.conf $HOME/.config/tmux/tmux.conf
 rm $HOME/.config/helix/config.toml
 mkdir $HOME/.config/helix
 ln -s $dir/helix/config.toml $HOME/.config/helix/config.toml
+
+# Cmus
+rm $HOME/.config/cmus/autosave
+mkdir $HOME/.config/cmus
+ln -s $dir/cmus/autosave $HOME/.config/cmus/autosave
