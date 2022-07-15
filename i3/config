@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -186,8 +186,8 @@ bar {
 }
 
 # _________________________ Tami customize from here _________________
-gaps inner 4
-gaps outer 4
+gaps inner 6
+gaps outer 6
 
 # This was a workaround, but this makes mouse warping shit.
 #exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
