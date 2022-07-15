@@ -35,3 +35,8 @@ ln -s $dir/helix/config.toml $HOME/.config/helix/config.toml
 rm $HOME/.config/cmus/autosave
 mkdir $HOME/.config/cmus
 ln -s $dir/cmus/autosave $HOME/.config/cmus/autosave
+
+# i3
+rm $HOME/.config/i3/config
+mkdir $HOME/.config/i3
+ln -s $dir/i3/config $HOME/.config/i3/config
