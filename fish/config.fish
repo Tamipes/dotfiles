@@ -167,6 +167,12 @@ if test -d $BUN_INSTALL/bin
         set -p PATH $BUN_INSTALL/bin
     end
 end
+
+if test -d $HOME/.cargo/bin
+    if not contains -- $HOME/.cargo/bin $PATH
+        set -p PATH $HOME/.cargo/bin
+    end
+end
 if test -d "$HOME/.spicetify"
     if not contains -- "$HOME/.spicetify"
         set -p PATH "$HOME/.spicetify"

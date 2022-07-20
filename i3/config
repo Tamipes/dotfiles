@@ -186,6 +186,8 @@ bar {
 }
 
 # _________________________ Tami customize from here _________________
+#for_window [class=".*"] border pixel 0
+new_window 1pixel
 gaps inner 6
 gaps outer 6
 
@@ -197,8 +199,8 @@ exec xinput --set-prop 9 'libinput Accel Speed' -0.75
 
 
 #exec nitrogen --restore &
-exec nitrogen wallhaven-g7m12q.png --set-scaled --head=1
-exec nitrogen wallhaven-g7m12q.png --set-scaled --head=0
+exec nitrogen /home/tamipes/Pictures/wallpapers/wallhaven-g7m12q.png --set-scaled --head=0
+exec nitrogen /home/tamipes/Pictures/wallpapers/wallhaven-g7m12q.png --set-scaled --head=1
 
 #mouse_warping none
 
