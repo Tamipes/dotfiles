@@ -195,8 +195,8 @@ gaps outer 6
 #exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
 #exec xinput set-prop 9 156 0.25 0 0 0 0.25 0 0 0 1
 # This is waaaay better.
-exec xinput --set-prop 9 'libinput Accel Speed' -0.83
-
+# exec xinput --set-prop 9 'libinput Accel Speed' -0.83
+exec xinput --set-prop 9 'libinput Accel Speed' -0.7
 
 #exec nitrogen --restore &
 exec nitrogen /home/tamipes/Pictures/wallpapers/wallhaven-g7m12q.png --set-scaled --head=0 && nitrogen /home/tamipes/Pictures/wallpapers/wallhaven-g7m12q.png --set-scaled --head=1

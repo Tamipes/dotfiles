@@ -8,6 +8,9 @@ set -l dir "$HOME/.tamipes"
 sudo rm /usr/share/fastfetch/presets/tami
 sudo ln -s $dir/fastfetch_presets/tami /usr/share/fastfetch/presets/tami
 
+# Create .config file for later use.
+mkdir $HOME/.config
+
 # Kitty
 rm $HOME/.config/kitty -r
 ln -s $dir/kitty $HOME/.config/
@@ -40,3 +43,7 @@ ln -s $dir/cmus/autosave $HOME/.config/cmus/autosave
 rm $HOME/.config/i3/config
 mkdir $HOME/.config/i3
 ln -s $dir/i3/config $HOME/.config/i3/config
+
+# starship
+rm $HOME/.config/starship.toml
+ln -s $dir/starship.toml $HOME/.config/starship.toml
