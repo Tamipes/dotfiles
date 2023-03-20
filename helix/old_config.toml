@@ -1,0 +1,5 @@
+theme = "snazzy"
+
+[editor]
+idle-timeout = 0
+true-color = true

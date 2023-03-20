@@ -32,6 +32,8 @@ ln -s $dir/tmux.conf $HOME/.config/tmux/tmux.conf
 rm $HOME/.config/helix/config.toml
 mkdir -p $HOME/.config/helix
 ln -s $dir/helix/config.toml $HOME/.config/helix/config.toml
+ln -s $dir/helix/languages.toml $HOME/.config/helix/languages.toml
+ln -s $dir/helix/themes $HOME/.config/helix
 
 # Cmus
 rm $HOME/.config/cmus/autosave

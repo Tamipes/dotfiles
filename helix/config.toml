@@ -1,5 +1,11 @@
-theme = "snazzy"
+theme = "dracula-tami"
 
 [editor]
 idle-timeout = 0
 true-color = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
