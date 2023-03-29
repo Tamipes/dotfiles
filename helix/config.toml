@@ -1,8 +1,10 @@
 theme = "dracula-tami"
 
 [editor]
+mouse = true
 idle-timeout = 0
 true-color = true
+line-number = "relative"
 
 [editor.lsp]
 display-inlay-hints = true
