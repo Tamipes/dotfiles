@@ -1,6 +1,14 @@
 #!/bin/bash
 echo "This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing."
 
+echo "Do you want to proceed? (y/n)"
+read answer
+
+if [ "$answer" != "y" ]; then
+    echo "Script execution aborted. Good choice!"
+    exit 1
+fi
+
 # This is the directory that the repo is in. So this script is at $HOME/.tamipes/start.sh
 dir="$(dirname "$(readlink -f "$0")")"
 
