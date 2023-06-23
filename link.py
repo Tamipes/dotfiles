@@ -17,7 +17,11 @@ def lnk(src, dst, target_is_directory=False):
 
 comb = os.path.join
 
-
+class LinkFile:
+    def __init__(self, origin, destination, type="file"):
+        self.origin = origin
+        self.destination = destination
+        self.type = type
 
 class helix:
     # def __init__(self):
