@@ -11,3 +11,6 @@ display-inlay-hints = true
 
 [editor.cursor-shape]
 insert = "bar"
+
+[keys.normal."+"]
+b = ":sh npm run build"
