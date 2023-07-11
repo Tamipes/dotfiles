@@ -87,15 +87,42 @@ def main():
     if answer.lower() != "y":
         print('Script execution aborted. Good choice!')
     
-    helix_files = [
-        LinkFile([curr_dir, 'helix', 'config.toml'], [osConfDir,'helix','config.toml']),
-        LinkFile([curr_dir, 'helix', 'languages.toml'], [osConfDir,'helix','languages.toml']),
-        LinkFile([curr_dir, 'helix', 'themes'], [osConfDir,'helix','themes'], 'dir'),
-        LinkFile(None,None,'msg',"The 'runtime' folder is still needed for completeness, this only links my customizations. (But it should not require manual intervention, thanks to helix installation.)")
+    programs = [
+        Program('Fastfetch', [
+            LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
+        ]),
+        Program('Kitty', [
+            LinkFile([curr_dir, 'kitty'], [osConfDir, 'kitty'], 'dir')
+        ]),
+        Program('Ricemood', [
+            LinkFile([curr_dir, 'ricemood'], [osConfDir, 'ricemood'], 'dir')
+        ]),
+        Program('Fish', [
+            LinkFile([curr_dir, 'fish'], [osConfDir, 'fish'], 'dir')
+        ]),
+        Program('Tmux', [
+            LinkFile([curr_dir, 'tmux.conf'], [osConfDir, 'tmux', 'tmux.conf'])
+        ]),
+        Program('Helix', [
+            LinkFile([curr_dir, 'helix', 'config.toml'], [osConfDir, 'helix', 'config.toml']),
+            LinkFile([curr_dir, 'helix', 'languages.toml'], [osConfDir, 'helix', 'languages.toml']),
+            LinkFile([curr_dir, 'helix', 'themes'], [osConfDir, 'helix', 'themes'], 'dir')
+        ]),
+        Program('Cmus', [
+            LinkFile([curr_dir, 'cmus', 'autosave'], [osConfDir, 'cmus', 'autosave'])
+        ]),
+        Program('i3', [
+            LinkFile([curr_dir, 'i3', 'config'], [osConfDir, 'i3', 'config'])
+        ]),
+        Program('starship', [
+            LinkFile([curr_dir, 'starship.toml'], [osConfDir, 'starship.toml'])
+        ])
     ]
 
-    helix = Program('helix', helix_files)
-    helix.install()
+    for program in programs:
+        program.install()
+
+    print("Script execution completed. All required links created.")
 
 
 if __name__ == "__main__":
