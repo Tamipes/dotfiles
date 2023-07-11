@@ -2,12 +2,19 @@ import os
 import ctypes
 import platform
 import subprocess
+import shutil
 
 def link(src,dest,folder):
-    if folder == True:
-        subprocess.run(['cmd','/c','mklink','/J',dest,src],shell=True)
-    else:
-        os.link(src,dest)
+    if platform.system() == 'Windows':
+        if folder == True:
+            subprocess.run(['cmd','/c','mklink','/J',dest,src],shell=True)
+        else:
+            os.link(src,dest)
+    elif platform.system() == 'Linux':
+        if folder == true:
+            os.symlink(src,dest)
+        else:
+            os.link(src,dest)
     
 
 class LinkFile:
@@ -24,6 +31,15 @@ class LinkFile:
             self.destination = None
             self.target_is_directory = None
             self.message = message
+    def rm(self):
+        if not self.type== 'msg':
+            if os.path.islink(self.destination):
+                os.unlink(self.destination)
+            elif os.path.exists(self.destination):
+                if self.target_is_directory:
+                    shutil.rmtree(self.destination)
+                else:
+                    os.remove(self.destination)
 
     def lnk(self):
         if not self.type == 'msg':
@@ -45,6 +61,8 @@ class Program:
                 try:
                     if not os.path.exists(os.path.dirname(file.destination)):
                         os.makedirs(os.path.dirname(file.destination))
+                    if os.path.exists(file.destination):
+                        file.rm()
                     file.lnk()
                     print('INFO   :    Linked to this directory: ' + file.destination)
                 except FileExistsError:
@@ -58,9 +76,16 @@ def main():
     if platform.system() == 'Windows':
         osConfDir = os.getenv('APPDATA')
         print("INFO   :    Platform is Windows, config directory is set to %APPDATA%")
+    elif platform.system() == 'Linux':
+        osConfDir = os.getenv('HOME') + '/.config'
+        print("INFO   :    Platform is Linux, config directory is set to '$HOME/.config'")
     else:
         print('ERROR  :    This is not a windows machine, update the script to work with this as well.')
     print()
+    
+    answer = input("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing. Do you want to proceed? (y/n)")
+    if answer.lower() != "y":
+        print('Script execution aborted. Good choice!')
     
     helix_files = [
         LinkFile([curr_dir, 'helix', 'config.toml'], [osConfDir,'helix','config.toml']),
