@@ -11,7 +11,7 @@ def link(src,dest,folder):
         else:
             os.link(src,dest)
     elif platform.system() == 'Linux':
-        if folder == true:
+        if folder == True:
             os.symlink(src,dest)
         else:
             os.link(src,dest)
@@ -88,9 +88,9 @@ def main():
         print('Script execution aborted. Good choice!')
     
     programs = [
-        Program('Fastfetch', [
-            LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
-        ]),
+        # Program('Fastfetch', [
+        #     LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
+        # ]),
         Program('Kitty', [
             LinkFile([curr_dir, 'kitty'], [osConfDir, 'kitty'], 'dir')
         ]),
