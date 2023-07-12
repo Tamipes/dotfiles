@@ -3,8 +3,8 @@ This repository contains my dotflies in an unorderly fashion. Some applications 
 
 ## **Don't run start.sh**
 The script deletes your dotfiles or even whole folders and tries to symlink the ones in this repo. And the symlinks are **not configured** to work with different folder setups.
-## **Don't run link__.py**
-It only works with Helix configs and only on _windows_, but check the code first.
+## **Don't run link.py**
+This will, like start.sh remove files and instead symlink them. It also does not work correctly on Windows, because only one application should be 'installed'(and that is helix).
 ## Included programs
 - Fish
 - Fastfetch

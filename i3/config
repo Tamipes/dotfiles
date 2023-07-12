@@ -96,8 +96,9 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+set $wwx "100"
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle; resize shrink width 200 px or 200 ppt; resize shrink height 100 px or 100 ppt; move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -189,7 +190,7 @@ bar {
 #for_window [class=".*"] border pixel 0
 new_window 1pixel
 gaps inner 6
-gaps outer 6
+gaps outer 8
 
 # This was a workaround, but this makes mouse warping shit.
 #exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1

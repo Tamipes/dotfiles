@@ -82,8 +82,9 @@ def main():
     else:
         print('ERROR  :    This is not a windows machine, update the script to work with this as well.')
     print()
-    
-    answer = input("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing. Do you want to proceed? (y/n)")
+
+    print("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing.")
+    answer = input("Do you want to proceed? (y/n): ")
     if answer.lower() != "y":
         print('Script execution aborted. Good choice!')
         return
