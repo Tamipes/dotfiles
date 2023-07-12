@@ -14,7 +14,7 @@ def link(src,dest,folder):
         if folder == True:
             os.symlink(src,dest)
         else:
-            os.link(src,dest)
+            os.symlink(src,dest)
     
 
 class LinkFile:
@@ -86,11 +86,14 @@ def main():
     answer = input("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing. Do you want to proceed? (y/n)")
     if answer.lower() != "y":
         print('Script execution aborted. Good choice!')
+        return
     
     programs = [
         # Program('Fastfetch', [
         #     LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
         # ]),
+        Program('Bash', [
+            LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc'])]),
         Program('Kitty', [
             LinkFile([curr_dir, 'kitty'], [osConfDir, 'kitty'], 'dir')
         ]),
