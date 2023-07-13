@@ -9,3 +9,5 @@ alias ls='ls -la --color=auto'
 alias grep='grep --color=auto'
 alias hx='helix'
 PS1='[\u@\h \W]\$ '
+# Kitty aliases:
+alias icat='kitty +kitten icat'
