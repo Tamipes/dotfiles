@@ -3,14 +3,16 @@ import ctypes
 import platform
 import subprocess
 import shutil
+Linux = 'Linux'
+Windows = 'Windows'
 
 def link(src,dest,folder):
-    if platform.system() == 'Windows':
+    if platform.system() == Windows:
         if folder == True:
             subprocess.run(['cmd','/c','mklink','/J',dest,src],shell=True)
         else:
             os.link(src,dest)
-    elif platform.system() == 'Linux':
+    elif platform.system() == Linux:
         if folder == True:
             os.symlink(src,dest)
         else:
@@ -73,14 +75,14 @@ class Program:
 def main():
     curr_dir = os.getcwd()
 
-    if platform.system() == 'Windows':
+    if platform.system() == Windows:
         osConfDir = os.getenv('APPDATA')
         print("INFO   :    Platform is Windows, config directory is set to %APPDATA%")
-    elif platform.system() == 'Linux':
+    elif platform.system() == Linux:
         osConfDir = os.getenv('HOME') + '/.config'
         print("INFO   :    Platform is Linux, config directory is set to '$HOME/.config'")
     else:
-        print('ERROR  :    This is not a windows machine, update the script to work with this as well.')
+        print('ERROR  :    This is not a windows or linux machine, update the script to work with this as well.')
     print()
 
     print("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing.")

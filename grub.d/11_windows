@@ -1,0 +1,26 @@
+#! /bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+
+if [ x$feature_platform_search_hint = xy ]; then
+  search --no-floppy --fs-uuid --set=tamara --hint-bios=hd0,gpt2 --hint-efi=hd0,gpt2 --hint-baremetal=ahci0,gpt2  372D-4165
+else
+  search --no-floppy --fs-uuid --set=tamara 372D-4165
+fi
+
+# source for the if statement:
+# https://stackoverflow.com/questions/67506022/create-a-grub-script-that-auto-detect-efi-systems-and-boot-first-one/74977789#74977789
+if [ -n "${tamara}" ]; then
+	menuentry "Eira-arch (pendrive)"{
+		set root=$tamara
+		insmod chain
+		chainloader /grub/x86_64-efi/grub.efi
+	}
+fi
+
+menuentry "Windows 10"{
+	insmod chain
+  chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+}
