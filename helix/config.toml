@@ -5,6 +5,7 @@ mouse = true
 idle-timeout = 0
 true-color = true
 line-number = "relative"
+cursorline = true
 
 [editor.lsp]
 display-inlay-hints = true
