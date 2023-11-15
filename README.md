@@ -6,7 +6,8 @@ The script deletes your dotfiles or even whole folders and tries to symlink the 
 ## **Don't run link.py**
 This will, like start.sh remove files and instead symlink them. It also does not work correctly on Windows, because only one application should be 'installed'(and that is helix).
 ## Included programs
-- Fish
+- *Fish* -- I don't use it anymore
+- Bash
 - Fastfetch
 - Kitty
 - Ricemood
