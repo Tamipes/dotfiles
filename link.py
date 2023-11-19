@@ -34,7 +34,10 @@ class LinkFile:
             self.target_is_directory = None
             self.message = message
     def exist_dest(self):
-        return (os.path.islink(self.destination) or os.path.exists(self.destination))
+        exists = (os.path.islink(self.destination) or os.path.exists(self.destination)) 
+        if exists:
+            print('WARNING:    File already exits in '+self.destination)
+        return exists
 
     def rm(self):
         if not self.type== 'msg':
