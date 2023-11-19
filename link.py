@@ -120,6 +120,9 @@ def main():
         Program('i3', [
             LinkFile([curr_dir, 'i3', 'config'], [osConfDir, 'i3', 'config'])
         ]),
+        Program('polybar', [
+            LinkFile([curr_dir, 'polybar', 'launch.sh'], [osConfDir, 'polybar', 'launch.sh'])
+        ]),
         Program('starship', [
             LinkFile([curr_dir, 'starship.toml'], [osConfDir, 'starship.toml'])
         ])

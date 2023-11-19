@@ -255,16 +255,18 @@ client.urgent           $base08 $base08 $base00   $base08    $base08
 client.placeholder      $base00 $base00 $base05   $base00    $base00
 client.background       $base07
 
-bar {
-        colors{
-                background $base00
-                statusline $base03
-                separator $base08
-#                                  Border    BG     Text
-                focused_workspace  $base0D $base0E $base00
-                #active_workspace  $base00 $base00 $base00
-                inactive_workspace $base02 $base01 $base05
-                urgent_workspace   $base08 $base08 $base00   
-        }
-        status_command i3status
-}
+exec_always --no-startup-id /home/tamipes/.config/polybar/launch.sh
+# Old i3 bar conifg:
+#bar {
+#        colors{
+#                background $base00
+#                statusline $base03
+#                separator $base08
+##                                  Border    BG     Text
+#                focused_workspace  $base0D $base0E $base00
+#                #active_workspace  $base00 $base00 $base00
+#                inactive_workspace $base02 $base01 $base05
+#                urgent_workspace   $base08 $base08 $base00   
+#        }
+#        status_command i3status
+#}
