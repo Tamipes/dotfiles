@@ -74,7 +74,7 @@ class Program:
                     file.lnk()
                     print('INFO   :    Linked to this directory: ' + file.destination)
                 except FileExistsError:
-                    print('WARNING:    This file already exists: ' + file.destination)
+                    print('ERROR  :    This file already exists: ' + file.destination)
                     pass
 
 
