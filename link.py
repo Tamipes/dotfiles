@@ -33,6 +33,9 @@ class LinkFile:
             self.destination = None
             self.target_is_directory = None
             self.message = message
+    def exist_dest(self):
+        return (os.path.islink(self.destination) or os.path.exists(self.destination))
+
     def rm(self):
         if not self.type== 'msg':
             if os.path.islink(self.destination):
@@ -63,7 +66,7 @@ class Program:
                 try:
                     if not os.path.exists(os.path.dirname(file.destination)):
                         os.makedirs(os.path.dirname(file.destination))
-                    if os.path.exists(file.destination):
+                    if file.exist_dest():
                         file.rm()
                     file.lnk()
                     print('INFO   :    Linked to this directory: ' + file.destination)
@@ -121,7 +124,8 @@ def main():
             LinkFile([curr_dir, 'i3', 'config'], [osConfDir, 'i3', 'config'])
         ]),
         Program('polybar', [
-            LinkFile([curr_dir, 'polybar', 'launch.sh'], [osConfDir, 'polybar', 'launch.sh'])
+            LinkFile([curr_dir, 'polybar', 'launch.sh'], [osConfDir, 'polybar', 'launch.sh']),
+            LinkFile([curr_dir, 'polybar', 'config.ini'], [osConfDir, 'polybar', 'config.ini'])
         ]),
         Program('starship', [
             LinkFile([curr_dir, 'starship.toml'], [osConfDir, 'starship.toml'])
