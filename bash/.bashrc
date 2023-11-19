@@ -6,12 +6,16 @@
 [[ $- != *i* ]] && return
 
 # Aliases come here
-alias ls='ls -la --color=auto'
+alias ls='ls -la --color=auto --hyperlink=auto'
 alias grep='grep --color=auto'
 alias hx='helix'
-alias icat='kitty +kitten icat'
 alias df='df -h'
 alias du='du -h'
+
+if [ "$TERM" == "xterm-kitty" ]; then 
+  alias ssh="kitten ssh"
+  alias icat='kitty +kitten icat'
+fi
 
 # Prompt engineering : D
 PS1='\e[1;35m\u\e[0m'
