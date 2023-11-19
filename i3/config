@@ -208,6 +208,7 @@ bindsym $mod+r mode "resize"
 new_window 1pixel
 gaps inner 6
 gaps outer 8
+gaps top 42px
 
 # Mouse speed set here:
 #! This was a workaround, but this makes mouse warping shit.
