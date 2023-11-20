@@ -126,9 +126,17 @@ def main():
         Program('i3', [
             LinkFile([curr_dir, 'i3', 'config'], [osConfDir, 'i3', 'config'])
         ]),
+        Program('picom', [
+            LinkFile([curr_dir, 'picom', 'picom.conf'], [osConfDir, 'picom', 'picom.conf'])
+        ]),
         Program('polybar', [
             LinkFile([curr_dir, 'polybar', 'launch.sh'], [osConfDir, 'polybar', 'launch.sh']),
             LinkFile([curr_dir, 'polybar', 'config.ini'], [osConfDir, 'polybar', 'config.ini'])
+        ]),
+        Program('rofi', [
+            LinkFile([curr_dir, 'rofi', 'theme.rasi'], [osConfDir, 'rofi', 'theme.rasi']),
+            LinkFile([curr_dir, 'rofi', 'rounded-common.rasi'], [osConfDir, 'rofi', 'rounded-common.rasi']),
+            LinkFile([curr_dir, 'rofi', 'config.rasi'], [osConfDir, 'rofi', 'config.rasi'])
         ]),
         Program('starship', [
             LinkFile([curr_dir, 'starship.toml'], [osConfDir, 'starship.toml'])
