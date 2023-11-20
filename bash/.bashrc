@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Aliases come here
+alias cal='cal -m'
 alias ls='ls -la --color=auto --hyperlink=auto'
 alias grep='grep --color=auto'
 alias hx='helix'
