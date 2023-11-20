@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import ctypes
 import platform
@@ -35,8 +37,6 @@ class LinkFile:
             self.message = message
     def exist_dest(self):
         exists = (os.path.islink(self.destination) or os.path.exists(self.destination)) 
-        if exists:
-            print('WARNING:    File already exits in '+self.destination)
         return exists
 
     def rm(self):
@@ -50,10 +50,18 @@ class LinkFile:
                     os.remove(self.destination)
 
     def lnk(self):
+        if not os.path.exists(os.path.dirname(self.destination)):
+            os.makedirs(os.path.dirname(self.destination))
         if not self.type == 'msg':
             link(self.origin,self.destination,self.target_is_directory)
         else:
             print('MESSAGE:    '+self.message)
+
+    def is_dest_link_origin(self):
+        installed = False
+        if os.path.islink(self.destination) and self.exist_dest():
+            installed = os.readlink(self.destination) == self.origin
+        return installed
 
 
 class Program:
@@ -67,12 +75,14 @@ class Program:
                 print('MESSAGE:    ' + file.message)
             else:
                 try:
-                    if not os.path.exists(os.path.dirname(file.destination)):
-                        os.makedirs(os.path.dirname(file.destination))
+                    if file.is_dest_link_origin():
+                        print(f'INFO   :    Already installed: {file.destination}' )
+                        continue
                     if file.exist_dest():
+                        print('WARNING:    A different file already exits ... removing: '+self.destination)
                         file.rm()
                     file.lnk()
-                    print('INFO   :    Linked to this directory: ' + file.destination)
+                    print('INFO   :    Linked to this file: ' + file.destination)
                 except FileExistsError:
                     print('ERROR  :    This file already exists: ' + file.destination)
                     pass
@@ -83,12 +93,13 @@ def main():
 
     if platform.system() == Windows:
         osConfDir = os.getenv('APPDATA')
-        print("INFO   :    Platform is Windows, config directory is set to %APPDATA%")
+        print("INFO   :    Platform is Windows, config directory is set to %APPDATA% -> " +osConfDir )
     elif platform.system() == Linux:
         osConfDir = os.getenv('HOME') + '/.config'
-        print("INFO   :    Platform is Linux, config directory is set to '$HOME/.config'")
+        print("INFO   :    Platform is Linux, config directory is set to '$HOME/.config' -> "+osConfDir )
     else:
         print('ERROR  :    This is not a windows or linux machine, update the script to work with this as well.')
+        return 0
     print()
 
     print("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing.")
@@ -144,6 +155,7 @@ def main():
     ]
 
     for program in programs:
+        print(f'--- Installing: {program.name} ---')
         program.install()
 
     print("Script execution completed. All required links created.")
