@@ -23,3 +23,6 @@ PS1='\e[1;35m\u\e[0m'
 PS1+='\e[0;29m@\e[0m'
 PS1+='\e[1;35m\h\e[0m'
 PS1+=': \e[0;34m\w\e[0m\n\$ '
+
+# Zoxide???
+eval "$(zoxide init --cmd cd bash)"
