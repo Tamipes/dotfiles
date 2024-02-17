@@ -22,6 +22,12 @@
 #  kitty
 #  helix
 
-# AUR
-#  paru
+# fonts:
+#  symbols:
+#   ttf-nerd-fonts-symbols
+#   ttf-nerd-fonts-mono
+#   noto-fonts-emoji
+
+# aur:
+#  paru:
 #    bat
