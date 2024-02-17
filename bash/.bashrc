@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+set colored-stats on
+
 # Aliases come here
 alias cal='cal -m'
 alias ls='ls -la --color=auto --hyperlink=auto'
