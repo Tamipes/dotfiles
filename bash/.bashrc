@@ -30,4 +30,14 @@ PS1+='\e[1;35m\h\e[0m'
 PS1+=': \e[0;34m\w\e[0m\n\$ '
 
 # Zoxide???
-eval "$(zoxide init --cmd cd bash)"
+if command -v zoxide &> /dev/null
+then
+  eval "$(zoxide init --cmd cd bash)"
+fi
+
+#nnn
+if command -v nnn &> /dev/null
+then
+  export NNN_FIFO=/tmp/nnn.fifo
+  export NNN_PLUG='p:preview-tui'
+fi
