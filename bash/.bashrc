@@ -17,7 +17,6 @@ if command -v helix &> /dev/null
 then
     alias hx='helix'
 fi
-
 if [ "$TERM" == "xterm-kitty" ]; then 
   alias ssh="kitten ssh"
   alias icat='kitty +kitten icat'
@@ -28,6 +27,9 @@ PS1='\e[1;35m\u\e[0m'
 PS1+='\e[0;29m@\e[0m'
 PS1+='\e[1;35m\h\e[0m'
 PS1+=': \e[0;34m\w\e[0m\n\$ '
+
+export PATH=$PATH:~/.tamipes/scripts
+export EDITOR=hx
 
 # Zoxide???
 if command -v zoxide &> /dev/null
