@@ -11,9 +11,12 @@ set colored-stats on
 alias cal='cal -m'
 alias ls='ls -la --color=auto --hyperlink=auto'
 alias grep='grep --color=auto'
-alias hx='helix'
 alias df='df -h'
 alias du='du -h'
+if command -v helix &> /dev/null
+then
+    alias hx='helix'
+fi
 
 if [ "$TERM" == "xterm-kitty" ]; then 
   alias ssh="kitten ssh"
