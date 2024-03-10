@@ -17,10 +17,6 @@ if command -v helix &> /dev/null
 then
     alias hx='helix'
 fi
-if [ "$TERM" == "xterm-kitty" ]; then 
-  alias ssh="kitten ssh"
-  alias icat='kitty +kitten icat'
-fi
 
 # Prompt engineering : D
 PS1='\e[1;35m\u\e[0m'
@@ -31,7 +27,17 @@ PS1+=': \e[0;34m\w\e[0m\n\$ '
 export PATH=$PATH:~/.tamipes/scripts
 export EDITOR=hx
 
-# Zoxide???
+# Kitty
+if test -n "$KITTY_INSTALLATION_DIR"; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
+fi
+if [ "$TERM" == "xterm-kitty" ]; then 
+  alias ssh="kitten ssh"
+  alias icat='kitty +kitten icat'
+fi
+
+# Zoxide
 if command -v zoxide &> /dev/null
 then
   eval "$(zoxide init --cmd cd bash)"
