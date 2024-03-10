@@ -5,6 +5,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Source old bashrc file
+# This is on the top, so if anything clashes the new ones will be used instead.
+# I kinda like it that way, but might break some things, so need to be careful.
+if [-f "$HOME/.config/old.bashrc" ]; then
+    . "$HOME/.config/old.bashrc"
+fi
+
 set colored-stats on
 
 # Aliases come here
@@ -79,3 +86,4 @@ then
       }
   }
 fi
+
