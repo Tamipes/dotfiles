@@ -52,6 +52,7 @@ class LinkFile:
     def lnk(self):
         if not os.path.exists(os.path.dirname(self.destination)):
             os.makedirs(os.path.dirname(self.destination))
+
         if not self.type == 'msg':
             link(self.origin,self.destination,self.target_is_directory)
         else:
@@ -95,8 +96,35 @@ def main():
         osConfDir = os.getenv('APPDATA')
         print("INFO   :    Platform is Windows, config directory is set to %APPDATA% -> " +osConfDir )
     elif platform.system() == Linux:
+        print("INFO   :    Platform is Linux")
         osConfDir = os.getenv('HOME') + '/.config'
-        print("INFO   :    Platform is Linux, config directory is set to '$HOME/.config' -> "+osConfDir )
+        if "root" in osConfDir:
+            print("User detected as root, assuming this is install to root is undesirable.")
+            print("Instead you will be prompted to choose a user in /home.")
+            answer = input("Do you want to proceed? (y/n)")
+            print()
+            if answer.lower() == "y":
+                allUsers = next(os.walk(r'/home'))[1]
+
+                print("-1 - Chose custom directory")
+                i = 0
+                for user in allUsers:
+                    print(f"{i} - {user} (/home/{user})")
+                    i = i + 1
+                print()
+                print("Chose a number from the list abbove to install to that directory, the mainly used directories")
+                print("are '.config/' and some files as '.bashrc'.")
+                answer = input("Number: ")
+                if int(answer) >= 0 and int(answer) < len(allUsers) :
+                    osConfDir = f"/home/{allUsers[int(answer)]}"
+                elif int(answer) == -1:
+                    answer = input("The user dir is:")
+                    osConfDir = answer
+                else:
+                    print("bad nubmer, exiting")
+                    return
+            print()
+        print("INFO   :    Config directory is set to -> "+osConfDir )
     else:
         print('ERROR  :    This is not a windows or linux machine, update the script to work with this as well.')
         return 0
