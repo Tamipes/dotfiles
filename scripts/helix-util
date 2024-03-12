@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+kitty hx $1 "$2"
