@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-kitty hx $1 "$2"
+kitty hx +$1 "$2"  # >> /home/tamara/code/test.txt
+
+#$(Line) $(File)
