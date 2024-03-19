@@ -26,11 +26,24 @@ then
 fi
 
 # Prompt engineering : D
+if [[ -n "$IN_NIX_SHELL" ]]; then
+    echo something
+  label="nix-shell"
+  if [[ "$name" != "$label" ]]; then
+    label="$label:$name"
+  fi
+  psx="\e[0;29m#$label\e[0m"
+  unset label
+fi
+
 PS1='\e[1;35m\u\e[0m'
 PS1+='\e[0;29m@\e[0m'
 PS1+='\e[1;35m\h\e[0m'
+PS1+=$psx
 PS1+=': \e[0;34m\w\e[0m\n\$ '
 
+
+# Env vars.
 export PATH=$PATH:~/.tamipes/scripts
 export EDITOR=hx
 
