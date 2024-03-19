@@ -16,7 +16,7 @@ set colored-stats on
 
 # Aliases come here
 alias cal='cal -m'
-alias ls='ls -la --color=auto --hyperlink=auto'
+alias ls='ls -lha --color=auto --hyperlink=auto'
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
