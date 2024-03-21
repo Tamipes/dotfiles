@@ -157,7 +157,8 @@ def main():
         Program('Helix', [
             LinkFile([curr_dir, 'helix', 'config.toml'], [osConfDir, 'helix', 'config.toml']),
             LinkFile([curr_dir, 'helix', 'languages.toml'], [osConfDir, 'helix', 'languages.toml']),
-            LinkFile([curr_dir, 'helix', 'themes'], [osConfDir, 'helix', 'themes'], 'dir')
+            LinkFile([curr_dir, 'helix', 'themes'], [osConfDir, 'helix', 'themes'], 'dir'),
+            LinkFile([curr_dir, 'helix', 'runtime', 'queries', 'arduino'], [osConfDir, 'runtime', 'queries', 'arduino'], 'dir')
         ]),
         Program('Cmus', [
             LinkFile([curr_dir, 'cmus', 'autosave'], [osConfDir, 'cmus', 'autosave'])
