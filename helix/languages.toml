@@ -2,3 +2,12 @@
 name = "javascript"
 auto-format = true
 
+[[lanugage]]
+name = "c-sharp"
+auto-format = true
+
+[language-server.omnisharp]
+command = "OmniSharp"
+args = [ "--languageserver"]
+config = { useModernNet = false }
+timeout = 300

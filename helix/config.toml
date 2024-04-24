@@ -1,4 +1,4 @@
-theme = "dracula-tami"
+theme = "new-tami"
 
 [editor]
 mouse = true
@@ -14,4 +14,5 @@ display-inlay-hints = true
 insert = "bar"
 
 [keys.normal."+"]
-b = ":sh npm run build"
+b = ":sh buildt"
+r = ":sh runt"
