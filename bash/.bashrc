@@ -68,6 +68,11 @@ then
   eval "$(zoxide init --cmd cd bash)"
 fi
 
+cd_with_fzf() {
+  local dir
+  dir=$(find . -maxdepth 1 -type d | fzf) && cd "$dir"
+}
+
 #nnn
 if command -v nnn &> /dev/null
 then
