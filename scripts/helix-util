@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-kitty hx +$1 "$2"  # >> /home/tamara/code/test.txt
+kitty /nix/store/dzmyk1x68020km5jvqlmj3qgkby2rvsa-helix-term-23.10.0/bin/hx +$1 "$2" --log /home/tamara/code/ts.txt -v # >> /home/tamara/code/test.txt
 
 #$(Line) $(File)
