@@ -80,7 +80,7 @@ class Program:
                         print(f'INFO   :    Already installed: {file.destination}' )
                         continue
                     if file.exist_dest():
-                        print('WARNING:    A different file already exits ... removing: '+self.destination)
+                        print('WARNING:    A different file already exits ... removing: '+file.destination)
                         file.rm()
                     file.lnk()
                     print('INFO   :    Linked to this file: ' + file.destination)
@@ -141,7 +141,8 @@ def main():
         #     LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
         # ]),
         Program('Bash', [
-            LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc'])]),
+            LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc']),
+            LinkFile([curr_dir,'bash','.inputrc'],[osConfDir,'..' , '.inputrc'])]),
         Program('Kitty', [
             LinkFile([curr_dir, 'kitty'], [osConfDir, 'kitty'], 'dir')
         ]),
@@ -187,6 +188,7 @@ def main():
         print(f'--- Installing: {program.name} ---')
         program.install()
 
+    print("")
     print("Script execution completed. All required links created.")
 
 
