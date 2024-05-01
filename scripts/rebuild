@@ -9,7 +9,7 @@ CONFIG_PATH="/home/tamara/nix-system"
 pushd $CONFIG_PATH
 
 # Edit your config
-$EDITOR configuration.nix
+$EDITOR flake.nix
 
 # Autoformat your nix files
 # alejandra . &>/dev/null
