@@ -40,14 +40,15 @@ class LinkFile:
         return exists
 
     def rm(self):
-        if not self.type== 'msg':
-            if os.path.islink(self.destination):
-                os.unlink(self.destination)
-            elif os.path.exists(self.destination):
-                if self.target_is_directory:
-                    shutil.rmtree(self.destination)
-                else:
-                    os.remove(self.destination)
+        if self.type== 'msg':
+            return
+        if os.path.islink(self.destination):
+            os.unlink(self.destination)
+        elif os.path.exists(self.destination):
+            if self.target_is_directory:
+                shutil.rmtree(self.destination)
+            else:
+                os.remove(self.destination)
 
     def lnk(self):
         if not os.path.exists(os.path.dirname(self.destination)):
@@ -80,12 +81,12 @@ class Program:
                         print(f'INFO   :    Already installed: {file.destination}' )
                         continue
                     if file.exist_dest():
-                        print('WARNING:    A different file already exits ... removing: '+file.destination)
+                        print('WARNING:    A different file already exits ... removing: ' + file.destination)
                         file.rm()
                     file.lnk()
                     print('INFO   :    Linked to this file: ' + file.destination)
                 except FileExistsError:
-                    print('ERROR  :    This file already exists: ' + file.destination)
+                    print('ERROR  :    This shouldn\'t happen, file exists error: ' + file.destination)
                     pass
 
 
@@ -94,30 +95,32 @@ def main():
 
     if platform.system() == Windows:
         osConfDir = os.getenv('APPDATA')
-        print("INFO   :    Platform is Windows, config directory is set to %APPDATA% -> " +osConfDir )
+        print("INFO   :    Platform is Windows, config directory is set to %APPDATA% -> ")
+        print("       " + osConfDir)
     elif platform.system() == Linux:
         print("INFO   :    Platform is Linux")
         osConfDir = os.getenv('HOME') + '/.config'
         if "root" in osConfDir:
-            print("User detected as root, assuming this is install to root is undesirable.")
-            print("Instead you will be prompted to choose a user in /home.")
-            answer = input("Do you want to proceed? (y/n)")
+            print()
+            print("User detected as root, do you want to choose a user in /home? If not the")
+            print("script will instead install to the root user.")
+            answer = input("Do you want to choose in /home? (y/n)")
             print()
             if answer.lower() == "y":
                 allUsers = next(os.walk(r'/home'))[1]
 
-                print("-1 - Chose custom directory")
-                i = 0
+                print("0 - Choose custom directory")
+                i = 1
                 for user in allUsers:
                     print(f"{i} - {user} (/home/{user})")
                     i = i + 1
                 print()
-                print("Chose a number from the list abbove to install to that directory, the mainly used directories")
-                print("are '.config/' and some files as '.bashrc'.")
+                print("Chose a number from the list abbove to install to that directory. The mainly")
+                print("used directories are '~/.config/' and some files such as '~/.bashrc'.")
                 answer = input("Number: ")
-                if int(answer) >= 0 and int(answer) < len(allUsers) :
-                    osConfDir = f"/home/{allUsers[int(answer)]}"
-                elif int(answer) == -1:
+                if int(answer) > 0 and int(answer) <= len(allUsers) :
+                    osConfDir = f"/home/{allUsers[int(answer) - 1]}"
+                elif int(answer) == 0:
                     answer = input("The user dir is:")
                     osConfDir = answer
                 else:
@@ -133,7 +136,7 @@ def main():
     print("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing.")
     answer = input("Do you want to proceed? (y/n): ")
     if answer.lower() != "y":
-        print('Script execution aborted. Good choice!')
+        print('Script execution aborted. Good choice! >.<')
         return
     
     programs = [
