@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+CONFIG_PATH="/home/tamara/nix-system"
+pushd $CONFIG_PATH
+
+# nix run github:nix-community/nixos-anywhere -- --copy-host-keys --flake .#elaina root@elaina.tami.moe
+nixos-rebuild switch --use-substitutes --flake .#elaina --target-host root@elaina.tami.moe
+
+popd
