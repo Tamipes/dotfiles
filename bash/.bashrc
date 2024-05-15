@@ -61,8 +61,11 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"
 fi
 if [ "$TERM" == "xterm-kitty" ]; then 
-  alias ssh="kitten ssh"
   alias icat='kitty +kitten icat'
+  if command -v kitten &> /dev/null
+  then
+    alias ssh="kitten ssh"
+  fi
 fi
 
 # Zoxide
