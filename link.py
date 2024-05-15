@@ -22,14 +22,16 @@ def link(src,dest,folder):
     
 
 class LinkFile:
-    # 'type' can be: 'file', 'dir', 'msg'
+    # 'type' can be: 'msg', 'file', 'backupFile', 'dir'
     def __init__(self, origin_parts, destination_parts, type="file",message = None):
         self.type = type
         if not type == 'msg':
             self.origin = os.path.join(*origin_parts)
             self.destination = os.path.join(*destination_parts)
             self.target_is_directory = True if type == "dir" else False
-            self.message = message
+            if type == 'backupFile':
+                self.backup = os.path.join(*message)
+            self.message = None
         else:
             self.origin = None
             self.destination = None
@@ -49,6 +51,12 @@ class LinkFile:
                 shutil.rmtree(self.destination)
             else:
                 os.remove(self.destination)
+
+    # Works on linux
+    def bkup(self):
+        if self.type == 'msg':
+            return
+        shutil.move(self.destination,self.backup)
 
     def lnk(self):
         if not os.path.exists(os.path.dirname(self.destination)):
@@ -80,9 +88,13 @@ class Program:
                     if file.is_dest_link_origin():
                         print(f'INFO   :    Already installed: {file.destination}' )
                         continue
-                    if file.exist_dest():
+                    if file.exist_dest() and file.type != 'backupFile':
                         print('WARNING:    A different file already exits ... removing: ' + file.destination)
                         file.rm()
+                    if file.exist_dest() and file.type == 'backupFile':
+                        print(f'INFO   :    Moving old file at: {file.destination}')
+                        print(f'            to {file.backup}')
+                        file.bkup()
                     file.lnk()
                     print('INFO   :    Linked to this file: ' + file.destination)
                 except FileExistsError:
@@ -144,7 +156,7 @@ def main():
         #     LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
         # ]),
         Program('Bash', [
-            LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc']),
+            LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc'], 'backupFile', [osConfDir, 'old.bashrc']),
             LinkFile([curr_dir,'bash','.inputrc'],[osConfDir,'..' , '.inputrc'])]),
         Program('Kitty', [
             LinkFile([curr_dir, 'kitty'], [osConfDir, 'kitty'], 'dir')
