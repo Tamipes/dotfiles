@@ -19,7 +19,7 @@
 (defwidget datee []
   (box :class "date-wrapper" :space-evenly false :halign "end"
     (box :class "bordered-box"
-      (label :text "${time.year} ${time.abbrMonth} ${time.day}" :class "date-lbl"))))
+      (label :text "${time.year} ${time.fullMonth} ${time.day} - ${time.fullDay}" :class "date-lbl"))))
 
 (defwidget music []
   (box :class "bordered-box"
