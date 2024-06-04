@@ -6,6 +6,11 @@ auto-format = true
 name = "c-sharp"
 auto-format = true
 
+[[language]]
+name = "nix"
+formatter = { command = "nixpkgs-fmt"}
+auto-format = true
+
 [language-server.omnisharp]
 command = "OmniSharp"
 args = [ "--languageserver"]

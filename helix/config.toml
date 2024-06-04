@@ -14,5 +14,5 @@ display-inlay-hints = true
 insert = "bar"
 
 [keys.normal."+"]
-b = ":sh buildt"
-r = ":sh runt"
+b = ":sh nbuild"
+r = ":sh nrun"
