@@ -1,0 +1,36 @@
+(defwindow powermenu
+  :monitor 0
+  :stacking "bg"
+  :windowtype "dock"
+  :wm-ignore false
+  :geometry (geometry
+              :width "100%"
+              :height "3%"); 40px
+  (powermenu_layout))
+
+(defwidget powermenu_layout []
+  (box :orientation "horizontal" (clock) (music) (datee)))
+
+(defwidget clock []
+  (box :class "bordered-box clock-box" :space-evenly false :halign "center" 
+    (label :text "${time.hour} : ${time.min}" :class "clock-lbl")))
+
+(defwidget datee []
+  (box :class "bordered-box" :space-evenly false :halign "center"
+    (label :text "${time.year} ${time.abbrMonth} ${time.day}" :class "date-lbl")))
+
+(defwidget music []
+  (box :class "bordered-box"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (label :class "music-lbl" :text {music != "" ? "🎵${music}" : ""})))
+
+(defwidget nnuull []
+"null")
+
+(defpoll time :interval "5s" :initial `{"hour":99, "min":99}`
+  `date +'{"hour": "%H","min":"%M","year":"%Y", "abbrDay":"%a", "fullDay":"%A", "abbrMonth":"%b", "fullMonth":"%B", "day":"%d"}'`)
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")

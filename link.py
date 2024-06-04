@@ -196,6 +196,10 @@ def main():
         ]),
         Program('starship', [
             LinkFile([curr_dir, 'starship.toml'], [osConfDir, 'starship.toml'])
+        ]),
+        Program('eww', [
+            LinkFile([curr_dir, 'eww', 'eww.scss'], [osConfDir, 'eww', 'eww.scss']),
+            LinkFile([curr_dir, 'eww', 'eww.yuck'], [osConfDir, 'eww', 'eww.yuck'])
         ])
     ]
 
