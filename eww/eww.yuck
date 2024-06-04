@@ -12,12 +12,14 @@
   (box :orientation "horizontal" (clock) (music) (datee)))
 
 (defwidget clock []
-  (box :class "bordered-box clock-box" :space-evenly false :halign "center" 
-    (label :text "${time.hour} : ${time.min}" :class "clock-lbl")))
+  (box :class "clock-wrapper" :space-evenly false :halign "left" 
+    (box :class "bordered-box clock-box"
+      (label :text "${time.hour} : ${time.min}" :class "clock-lbl"))))
 
 (defwidget datee []
-  (box :class "bordered-box" :space-evenly false :halign "center"
-    (label :text "${time.year} ${time.abbrMonth} ${time.day}" :class "date-lbl")))
+  (box :class "date-wrapper" :space-evenly false :halign "end"
+    (box :class "bordered-box"
+      (label :text "${time.year} ${time.abbrMonth} ${time.day}" :class "date-lbl"))))
 
 (defwidget music []
   (box :class "bordered-box"
