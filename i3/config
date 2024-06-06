@@ -184,8 +184,8 @@ mode "resize" {
 
         # same bindings, but for the arrow keys
         bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
@@ -246,6 +246,7 @@ set $base0D #57c7ff
 set $base0E #ff6ac1
 set $base0F #b2643c
 
+default_border pixel 2
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border    BG     Text   Indicator  Child Border
