@@ -1,0 +1,9 @@
+# General execs for this setup
+exec --no-startup-id picom -b
+
+# Top bar
+exec_always --no-startup-id /home/tamipes/.config/polybar/launch.sh
+
+gaps inner 6
+gaps outer 8
+gaps top 42px

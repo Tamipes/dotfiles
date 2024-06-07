@@ -203,12 +203,15 @@ bindsym $mod+r mode "resize"
 #}
 
 # _________________________ Tami customize from here _________________
+include ~/.config/i3/default
+
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 500 ms
 # i3 gaps settings:
 #for_window [class=".*"] border pixel 0
 new_window 1pixel
-gaps inner 6
-gaps outer 8
-gaps top 42px
+gaps inner 10
+gaps outer 10
 
 # Mouse speed set here:
 #! This was a workaround, but this makes mouse warping shit.
@@ -216,7 +219,6 @@ gaps top 42px
 #exec xinput set-prop 9 156 0.25 0 0 0 0.25 0 0 0 1
 #! This is waaaay better.
 #exec xinput --set-prop 9 'libinput Accel Speed' -0.83
-exec --no-startup-id xinput --set-prop 9 'libinput Accel Speed' -0.7
 
 # Backround Image setting:
 exec --no-startup-id /home/tamipes/.fehbg
@@ -257,8 +259,6 @@ client.urgent           $base08 $base08 $base00   $base08    $base08
 client.placeholder      $base00 $base00 $base05   $base00    $base00
 client.background       $base07
 
-exec --no-startup-id picom -b
-exec_always --no-startup-id /home/tamipes/.config/polybar/launch.sh
 # Old i3 bar conifg:
 #bar {
 #        colors{

@@ -180,7 +180,9 @@ def main():
             LinkFile([curr_dir, 'cmus', 'autosave'], [osConfDir, 'cmus', 'autosave'])
         ]),
         Program('i3', [
-            LinkFile([curr_dir, 'i3', 'config'], [osConfDir, 'i3', 'config'])
+            LinkFile([curr_dir, 'i3', 'config'], [osConfDir, 'i3', 'config']),
+            LinkFile([curr_dir, 'i3', 'laptop'], [osConfDir, 'i3', 'laptop']),
+            LinkFile([curr_dir, 'i3', 'default'], [osConfDir, 'i3', 'default'])
         ]),
         Program('picom', [
             LinkFile([curr_dir, 'picom', 'picom.conf'], [osConfDir, 'picom', 'picom.conf'])
