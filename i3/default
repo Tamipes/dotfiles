@@ -1,7 +1,4 @@
 # Default config stuff for my home pc
-exec --no-startup-id xinput --set-prop 'pointer:Razer Razer Mamba Hyperflux' 'libinput Accel Speed' -0.757
-exec --no-startup-id xinput --set-prop 'pointer:Razer Razer Mamba Hyperflux' 'libinput Accel Profile Enabled' 0 1 0
-exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 165.00 --primary
 
 # Main monitor workspaces
 workspace 1 output DP-2
