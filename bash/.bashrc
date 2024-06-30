@@ -83,7 +83,7 @@ cd_with_fzf() {
 if command -v nnn &> /dev/null
 then
   export NNN_FIFO=/tmp/nnn.fifo
-  export NNN_PLUG='p:preview-tui'
+  export NNN_PLUG='p:preview-tui;/:autojump'
   n ()
   {
       # Block nesting of nnn in subshells
