@@ -44,6 +44,9 @@ class LinkFile:
     def rm(self):
         if self.type== 'msg':
             return
+        # TODO: (os.path.islink()) This does not work on windows with folder. 
+        # But deleting the folder(as it currently does) fails, and the code 
+        # moves on.
         if os.path.islink(self.destination):
             os.unlink(self.destination)
         elif os.path.exists(self.destination):
@@ -205,9 +208,14 @@ def main():
         ])
     ]
 
-    for program in programs:
-        print(f'--- Installing: {program.name} ---')
-        program.install()
+    if platform.system() == Windows:
+        for program in [x for x in programs if x.name == "Helix"]:
+            print(f'--- Installing: {program.name} ---')
+            program.install()
+    else:
+        for program in programs:
+            print(f'--- Installing: {program.name} ---')
+            program.install()
 
     print("")
     print("Script execution completed. All required links created.")
