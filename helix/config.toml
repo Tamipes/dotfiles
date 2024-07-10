@@ -1,11 +1,19 @@
 theme = "new-tami"
 
 [editor]
+auto-format = true
 mouse = true
 idle-timeout = 0
 true-color = true
 line-number = "relative"
 cursorline = true
+popup-border = "all"
+# bufferline = "always" // have to think about this
+
+[editor.statusline]
+left = [ "mode", "separator", "spinner", "read-only-indicator", "file-modification-indicator" ]
+center = [ "file-name", "separator","spacer",  "version-control" ]
+right = [ "diagnostics", "separator", "selections", "register", "separator", "position", "file-encoding" ]
 
 [editor.lsp]
 display-inlay-hints = true
