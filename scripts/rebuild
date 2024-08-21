@@ -15,17 +15,18 @@ $EDITOR flake.nix
 # alejandra . &>/dev/null
 
 # Shows your changes
-git diff -U0 **.nix
+find . -name "*.nix" | xargs -I {} git diff -U0 {}
 
+echo 
 echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
 sudo nixos-rebuild switch --flake $CONFIG_PATH/ &> nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 
 # Get current generation metadata
-current=$(nixos-rebuild list-generations | grep current | sed 's/ *[*]*$//')
+current="$(hostname) - $(nixos-rebuild list-generations | grep current | sed 's/ *[*]*$//' | sed 's/current/generation/' | sed 's/[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}//')"
 
-# Commit all changes witih the generation metadata
+# Commit all changes with the generation metadata
 git commit -am "$current"
 git push
 # Back to where you were
