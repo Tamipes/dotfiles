@@ -209,6 +209,8 @@ bindsym $mod+r mode "resize"
 
 # _________________________ Tami customize from here _________________
 
+exec --no-startup-id picom -b
+
 workspace_auto_back_and_forth yes
 force_display_urgency_hint 500 ms
 # i3 gaps settings:
