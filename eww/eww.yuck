@@ -9,7 +9,12 @@
   (powermenu_layout))
 
 (defwidget powermenu_layout []
-  (box :orientation "horizontal" (clock) (music) (datee)))
+  (box :orientation "horizontal" 
+    (box 
+      :orientation "horizontal" 
+      (clock) 
+      (workspaces :names {captures(active-workspaces, "\"[0-9]\"")} :current-id {captures(current-workspace-index, "[0-9]")[0][0]})) 
+    (music) (datee)))
 
 (defwidget clock []
   (box :class "clock-wrapper" :space-evenly false :halign "left" 
@@ -28,11 +33,40 @@
        :halign "center"
     (label :class "music-lbl" :text {music != "" ? "🎵${music}" : ""})))
 
+(defwidget workspaces [names current-id]
+  (box 
+     ; :class "bordered-box"
+     :orientation "h"
+     :space-evenly false
+     :halign "center"
+      (workspaces-implementation :names names :current {replace(names[current-id][0], "\"", "")} :current-id current-id ))
+  )
+
+(defwidget workspaces-implementation [names current current-id]
+  (box
+    (box :class {"wrk " + (current == 1 ? "active-workspace" : (matches(names, 1) ? "exist-workspace" : "no-workspace"))} (label :text 1))
+    (box :class {"wrk " + (current == 2 ? "active-workspace" : (matches(names, 2) ? "exist-workspace" : "no-workspace"))} (label :text 2))
+    (box :class {"wrk " + (current == 3 ? "active-workspace" : (matches(names, 3) ? "exist-workspace" : "no-workspace"))} (label :text 3))
+    (box :class {"wrk " + (current == 4 ? "active-workspace" : (matches(names, 4) ? "exist-workspace" : "no-workspace"))} (label :text 4))
+    (box :class {"wrk " + (current == 5 ? "active-workspace" : (matches(names, 5) ? "exist-workspace" : "no-workspace"))} (label :text 5))
+    (box :class {"wrk " + (current == 6 ? "active-workspace" : (matches(names, 6) ? "exist-workspace" : "no-workspace"))} (label :text 6))
+    (box :class {"wrk " + (current == 7 ? "active-workspace" : (matches(names, 7) ? "exist-workspace" : "no-workspace"))} (label :text "z"))
+    (box :class {"wrk " + (current == 8 ? "active-workspace" : (matches(names, 8) ? "exist-workspace" : "no-workspace"))} (label :text "x"))
+    (box :class {"wrk " + (current == 9 ? "active-workspace" : (matches(names, 9) ? "exist-workspace" : "no-workspace"))} (label :text "c"))
+))
+
 (defwidget nnuull []
 "null")
+
+
+; ..:: Utilities ::..
 
 (defpoll time :interval "5s" :initial `{"hour":99, "min":99}`
   `date +'{"hour": "%H","min":"%M","year":"%Y", "abbrDay":"%a", "fullDay":"%A", "abbrMonth":"%b", "fullMonth":"%B", "day":"%d"}'`)
 
 (deflisten music :initial ""
   "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(deflisten active-workspaces :initial "N/A" "xprop -root -spy _NET_DESKTOP_NAMES")
+; (defvar wkps '${captures(active-workspace, "\"[0-9]\"")}' )
+(deflisten current-workspace-index :initial "" "xprop -spy -root _NET_CURRENT_DESKTOP")

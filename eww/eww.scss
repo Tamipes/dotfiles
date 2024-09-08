@@ -2,8 +2,11 @@ $surface-darkgrey: #20252b;
 $surface-fg: #949494;
 $surface-lightgrey: #3d464e;
 $surface-grey: #2b3238;
+
 $surface-pink: #ff8bcd;
 $surface-blue: #57C7FF;
+
+$background: #282a36;
 
 * { all: unset; }
 
@@ -34,12 +37,33 @@ $surface-blue: #57C7FF;
   /* color: #49a6d4; */
   color: #6a8fff;
   border: 2px solid;
-  background: #282a36;
+  background: $background;
   margin: 2px;
   padding: 4px 15px 4px 15px;
   /* padding: 0px 10px 0px 10px; */
 }
 
+.wrk {
+  color: #6a8fff;
+  border-radius: 10px;
+  border: 2px solid;
+  background: $background;
+  margin: 5px;
+  padding: 0px 10px 0px 10px;
+}
+
+.no-workspace {
+  background: transparent;
+  outline-color: transparent;
+  border-color: transparent;
+  color: transparent;
+  box-shadow: none;
+
+}
+
+.active-workspace{
+  color: $surface-pink;
+}
 /* .clock-box { */
   /* padding: 4px 15px 4px 15px; */
 /* } */
