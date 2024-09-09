@@ -8,6 +8,8 @@ CONFIG_PATH="/home/tamara/nix-system"
 # pushd /etc/nixos
 pushd $CONFIG_PATH
 
+git pull
+
 # Edit your config
 $EDITOR flake.nix
 
