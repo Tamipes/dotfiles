@@ -32,7 +32,8 @@
        :space-evenly false
        :halign "center"
     (label :class "music-lbl music-artist" :text {music != "" ? "🎵${music[0]} " : ""})
-    (label :class "music-lbl music-title" :text {music != "" ? "- ${music[1]}" : ""})
+    (label :class "music-lbl label-separator" :text {music != "" ? " | " : ""})
+    (label :class "music-lbl music-title" :text {music != "" ? "${music[1]}" : ""})
   ))
 
 (defwidget workspaces [names current-id]
