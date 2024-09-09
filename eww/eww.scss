@@ -5,6 +5,8 @@ $surface-grey: #2b3238;
 
 $surface-pink: #ff8bcd;
 $surface-blue: #57C7FF;
+$surface-dark-blue: #6a8fff;
+$surface-orange: #fc8950;
 
 $background: #282a36;
 
@@ -25,6 +27,12 @@ $background: #282a36;
   font-size: 1em;
   /* color: $surface-pink; */
 }
+.music-artist {
+  color: $surface-orange;
+}
+/* .music-title { */
+  /* color: $surface-blue; */
+/* } */
 
 .date-lbl {
   font-size: 1em;

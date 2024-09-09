@@ -27,11 +27,13 @@
       (label :text "${time.year} ${time.fullMonth} ${time.day} - ${time.fullDay}" :class "date-lbl"))))
 
 (defwidget music []
-  (box :class "bordered-box"
+  (box :class "${music != "" ? "bordered-box" : "no-workspace" }"
        :orientation "h"
        :space-evenly false
        :halign "center"
-    (label :class "music-lbl" :text {music != "" ? "🎵${music}" : ""})))
+    (label :class "music-lbl music-artist" :text {music != "" ? "🎵${music[0]} " : ""})
+    (label :class "music-lbl music-title" :text {music != "" ? "- ${music[1]}" : ""})
+  ))
 
 (defwidget workspaces [names current-id]
   (box 
@@ -65,7 +67,7 @@
   `date +'{"hour": "%H","min":"%M","year":"%Y", "abbrDay":"%a", "fullDay":"%A", "abbrMonth":"%b", "fullMonth":"%B", "day":"%d"}'`)
 
 (deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+  "playerctl --follow metadata --format '[\"{{ artist }}\",\"{{ title }}\"]' || true")
 
 (deflisten active-workspaces :initial "N/A" "xprop -root -spy _NET_DESKTOP_NAMES")
 ; (defvar wkps '${captures(active-workspace, "\"[0-9]\"")}' )
