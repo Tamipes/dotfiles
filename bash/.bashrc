@@ -44,9 +44,17 @@ if [[ -n "$IN_NIX_SHELL" ]]; then
   unset label
 fi
 
+# Prompt engineering
+if [ "$TAMI_FOREIGN" = 1 ]; then
+  PSC='\e[1;32m' 
+else
+  PSC='\e[1;35m'
+fi
+
 PS1='\e[1;35m\u\e[0m'
 PS1+='\e[0;29m@\e[0m'
-PS1+='\e[1;35m\h\e[0m'
+PS1+=$PSC
+PS1+='\h\e[0m'
 PS1+=$psx
 PS1+=': \e[0;34m\w\e[0m\n\$ '
 
