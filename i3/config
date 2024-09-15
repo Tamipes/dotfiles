@@ -114,10 +114,10 @@ bindsym $mod+e layout toggle split
 #! The variables also make it easy to change the amount of the resize.
 set $wwx 200
 set $wwy 100
-bindsym $mod+Shift+space floating toggle; resize shrink width $wwx px or $wwx ppt; resize shrink height $wwy px or $wwy ppt; move position center
+bindsym $mod+Shift+b floating toggle; resize shrink width $wwx px or $wwx ppt; resize shrink height $wwy px or $wwy ppt; move position center
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+b focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
