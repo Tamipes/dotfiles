@@ -1,8 +1,58 @@
 #!/usr/bin/env bash
+# A rebuild and deploy script that commits on a successful build
+set -e
+
 CONFIG_PATH="/home/tamara/nix-system"
+SSH_HOST="root@elaina.tami.moe"
+DEPLOY_HOSTNAME="elaina"
+
+# cd to your config dir
+# pushd /etc/nixos
 pushd $CONFIG_PATH
 
-# nix run github:nix-community/nixos-anywhere -- --copy-host-keys --flake .#elaina root@elaina.tami.moe
-nixos-rebuild switch --use-substitutes --flake .#elaina --target-host root@elaina.tami.moe
+git pull
 
+# Edit your config
+$EDITOR flake.nix
+
+# Autoformat your nix files
+# alejandra . &>/dev/null
+
+# Shows your changes
+find . -name "*.nix" | xargs -I {} git diff -U0 {}
+
+echo 
+echo "Rebuilding and deploying $DEPLOY_HOSTNAME..." | tee nixos-deploy.log 
+
+# Rebuild, output simplified errors, log trackebacks
+# sudo nixos-rebuild switch --flake $CONFIG_PATH/ &> nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+nixos-rebuild switch --use-substitutes --flake .#$DEPLOY_HOSTNAME --target-host $SSH_HOST  2>&1 | tee -a nixos-deploy.log
+exit_code=${PIPESTATUS[0]}
+if [ $exit_code -ne 0 ]; then
+    grep --color error nixos-deploy.log
+    exit $exit_code
+fi
+
+# Get current generation metadata
+current="$DEPLOY_HOSTNAME - $(\ssh $SSH_HOST -t "nixos-rebuild list-generations | cat" | grep current | sed 's/ *[*]*$//' | sed 's/current/generation/' | sed 's/[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}//')"
+
+echo
+echo "Git shenanigans: "
+# Commit all changes with the generation metadata
+git commit -am "$current"
+git push
+# Back to where you were
 popd
+
+# Notify all OK!
+notify-send -e "NixOS Rebuilt OK!" --icon=software-update-available
+
+# TODO: Remove old if not needed:
+#!/usr/bin/env bash
+# CONFIG_PATH="/home/tamara/nix-system"
+# pushd $CONFIG_PATH
+
+# # nix run github:nix-community/nixos-anywhere -- --copy-host-keys --flake .#elaina root@elaina.tami.moe
+# nixos-rebuild switch --use-substitutes --flake .#elaina --target-host root@elaina.tami.moe
+
+# popd
