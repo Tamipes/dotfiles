@@ -9,17 +9,34 @@
   (powermenu_layout))
 
 (defwidget powermenu_layout []
-  (box :orientation "horizontal" 
+  (box 
+    :orientation "horizontal" 
     (box 
       :orientation "horizontal" 
+      :halign "start"
+      :space-evenly false
       (clock) 
-      (workspaces :names {captures(active-workspaces, "\"[0-9]\"")} :current-id {captures(current-workspace-index, "[0-9]")[0][0]})) 
-    (music) (datee)))
+      (workspaces :names {captures(active-workspaces, "\"[0-9]\"")} :current-id {captures(current-workspace-index, "[0-9]")[0][0]}) 
+    )
+    (music)
+    (box (batt) (box :orientation "horizontal" :halign "end" :space-evenly false (key_layout)(datee)) )
+  )
+)
+
+(defwidget batt []
+  (box :class "clock-wrapper" :space-evenly false :halign "end" 
+    (box :class "bordered-box clock-box"
+      (label :text "${EWW_BATTERY["BAT0"]["capacity"]}%" :class "clock-lbl"))))
 
 (defwidget clock []
-  (box :class "clock-wrapper" :space-evenly false :halign "left" 
+  (box :class "clock-wrapper" :space-evenly false :halign "end" 
     (box :class "bordered-box clock-box"
       (label :text "${time.hour} : ${time.min}" :class "clock-lbl"))))
+
+(defwidget key_layout []
+  (box :space-evenly false :halign "end"
+    (box :class "bordered-box key-layout-box"
+      (label :text "${key-layout}" :class "key-layout-lbl"))))
 
 (defwidget datee []
   (box :class "date-wrapper" :space-evenly false :halign "end"
@@ -69,6 +86,8 @@
 
 (deflisten music :initial ""
   "playerctl --follow metadata --format '[\"{{ artist }}\",\"{{ title }}\"]' || true")
+
+(deflisten key-layout :initial "N/A" "klc")
 
 (deflisten active-workspaces :initial "N/A" "xprop -root -spy _NET_DESKTOP_NAMES")
 ; (defvar wkps '${captures(active-workspace, "\"[0-9]\"")}' )
