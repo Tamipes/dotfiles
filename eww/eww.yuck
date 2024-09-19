@@ -87,7 +87,7 @@
 (deflisten music :initial ""
   "playerctl --follow metadata --format '[\"{{ artist }}\",\"{{ title }}\"]' || true")
 
-(deflisten key-layout :initial "N/A" "klc")
+(deflisten key-layout :initial "na" "stdbuf -o0 klc")
 
 (deflisten active-workspaces :initial "N/A" "xprop -root -spy _NET_DESKTOP_NAMES")
 ; (defvar wkps '${captures(active-workspace, "\"[0-9]\"")}' )
