@@ -8,6 +8,8 @@ CONFIG_PATH="/home/tamara/nix-system"
 # pushd /etc/nixos
 pushd $CONFIG_PATH
 
+git restore nixos-deploy.log
+git restore nixos-switch.log
 git pull
 
 # Edit your config

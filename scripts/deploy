@@ -10,6 +10,8 @@ DEPLOY_HOSTNAME="elaina"
 # pushd /etc/nixos
 pushd $CONFIG_PATH
 
+git restore nixos-deploy.log
+git restore nixos-switch.log
 git pull
 
 # Edit your config
