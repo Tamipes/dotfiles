@@ -205,6 +205,9 @@ def main():
         Program('eww', [
             LinkFile([curr_dir, 'eww', 'eww.scss'], [osConfDir, 'eww', 'eww.scss']),
             LinkFile([curr_dir, 'eww', 'eww.yuck'], [osConfDir, 'eww', 'eww.yuck'])
+        ]),
+        Program('ghci', [
+            LinkFile([curr_dir, '.ghci'], [osConfDir, '.ghci'])
         ])
     ]
 
