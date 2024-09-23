@@ -207,7 +207,7 @@ def main():
             LinkFile([curr_dir, 'eww', 'eww.yuck'], [osConfDir, 'eww', 'eww.yuck'])
         ]),
         Program('ghci', [
-            LinkFile([curr_dir, '.ghci'], [osConfDir, '.ghci'])
+            LinkFile([curr_dir, '.ghci'], [osConfDir, '..' ,'.ghci'])
         ])
     ]
 
