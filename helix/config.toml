@@ -10,6 +10,9 @@ cursorline = true
 popup-border = "all"
 # bufferline = "always" // have to think about this
 
+[editor.soft-wrap]
+enable = true
+
 [editor.statusline]
 left = [ "mode", "separator", "spinner", "read-only-indicator", "file-modification-indicator" ]
 center = [ "file-name", "separator","spacer",  "version-control" ]
