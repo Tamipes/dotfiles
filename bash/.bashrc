@@ -46,19 +46,26 @@ fi
 
 # Prompt engineering
 if [ "$TAMI_FOREIGN" = 1 ]; then
-  if [[ -n "$PSC" ]]; then
-    PSC="$PSC"    
+  if [[ -n "$PSCH" ]]; then
+    PSCH="$PSCH"    
   else
-    PSC='\e[1;32m' 
+    PSCH='\e[1;32m' 
   fi
   alias ls='ls -lh --color=auto'
 else
-  PSC='\e[1;35m'
+  PSCH='\e[1;35m'
 fi
 
-PS1='\e[1;35m\u\e[0m'
+if [[ -n "$PSCN" ]]; then
+  PSCN="$PSCN"
+else
+  PSCN='\e[1;35m'
+fi
+
+PS1=$PSCN
+PS1+='\u\e[0m'
 PS1+='\e[0;29m@\e[0m'
-PS1+=$PSC
+PS1+=$PSCH
 PS1+='\h\e[0m'
 PS1+=$psx
 PS1+=': \e[0;34m\w\e[0m\n\$ '
