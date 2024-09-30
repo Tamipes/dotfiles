@@ -46,7 +46,11 @@ fi
 
 # Prompt engineering
 if [ "$TAMI_FOREIGN" = 1 ]; then
-  PSC='\e[1;32m' 
+  if [[ -n "$PSC" ]]; then
+    PSC="$PSC"    
+  else
+    PSC='\e[1;32m' 
+  fi
   alias ls='ls -lh --color=auto'
 else
   PSC='\e[1;35m'
