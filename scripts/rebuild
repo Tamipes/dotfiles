@@ -11,6 +11,7 @@ pushd $CONFIG_PATH
 git restore nixos-deploy.log
 git restore nixos-switch.log
 git pull
+nix flake update custom-pkgs
 
 # Edit your config
 $EDITOR flake.nix
