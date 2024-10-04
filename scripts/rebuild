@@ -11,7 +11,14 @@ pushd $CONFIG_PATH
 git restore nixos-deploy.log
 git restore nixos-switch.log
 git pull
-nix flake lock --update-input custom-pkgs
+nix_version=$(nix --version)
+if [[ "$nix_version" == *"Lix"* ]]; then
+    # Run this command if "Lix" is found
+    nix flake update custom-pkgs
+else
+    # Run this command otherwise
+    nix flake lock --update-input custom-pkgs
+fi
 
 # Edit your config
 $EDITOR flake.nix
