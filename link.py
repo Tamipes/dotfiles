@@ -160,7 +160,9 @@ def main():
         # ]),
         Program('Bash', [
             LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc'], 'backupFile', [osConfDir, 'old.bashrc']),
-            LinkFile([curr_dir,'bash','.inputrc'],[osConfDir,'..' , '.inputrc'])]),
+            LinkFile([curr_dir,'bash','.profile'],[osConfDir,'..' , '.profile']),
+            LinkFile([curr_dir,'bash','.inputrc'],[osConfDir,'..' , '.inputrc'])
+        ]),
         Program('Kitty', [
             LinkFile([curr_dir, 'kitty'], [osConfDir, 'kitty'], 'dir')
         ]),
