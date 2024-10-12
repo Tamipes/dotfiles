@@ -149,12 +149,6 @@ def main():
         return 0
     print()
 
-    print("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing.")
-    answer = input("Do you want to proceed? (y/n): ")
-    if answer.lower() != "y":
-        print('Script execution aborted. Good choice! >.<')
-        return
-    
     programs = [
         # Program('Fastfetch', [
         #     LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
@@ -180,7 +174,7 @@ def main():
             LinkFile([curr_dir, 'helix', 'config.toml'], [osConfDir, 'helix', 'config.toml']),
             LinkFile([curr_dir, 'helix', 'languages.toml'], [osConfDir, 'helix', 'languages.toml']),
             LinkFile([curr_dir, 'helix', 'themes'], [osConfDir, 'helix', 'themes'], 'dir'),
-            LinkFile([curr_dir, 'helix', 'runtime', 'queries', 'arduino'], [osConfDir, 'runtime', 'queries', 'arduino'], 'dir')
+            LinkFile([curr_dir, "helix", "runtime", "queries" ], [osConfDir, "helix", "runtime", "queries" ], 'dir')
         ]),
         Program('Cmus', [
             LinkFile([curr_dir, 'cmus', 'autosave'], [osConfDir, 'cmus', 'autosave'])
@@ -213,6 +207,12 @@ def main():
             LinkFile([curr_dir, '.ghci'], [osConfDir, '..' ,'.ghci'])
         ])
     ]
+
+    print("This script will overwrite the folders as well. Don't run it if you aren't sure what you're doing.")
+    answer = input("Do you want to proceed? (y/n): ")
+    if answer.lower() != "y":
+        print('Script execution aborted. Good choice! >.<')
+        return
 
     if platform.system() == Windows:
         for program in [x for x in programs if x.name == "Helix"]:
