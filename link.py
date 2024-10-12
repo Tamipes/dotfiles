@@ -62,13 +62,13 @@ class LinkFile:
         shutil.move(self.destination,self.backup)
 
     def lnk(self):
+        if self.type == 'msg':
+            print('MESSAGE:    '+self.message)
+            return
+
         if not os.path.exists(os.path.dirname(self.destination)):
             os.makedirs(os.path.dirname(self.destination))
-
-        if not self.type == 'msg':
-            link(self.origin,self.destination,self.target_is_directory)
-        else:
-            print('MESSAGE:    '+self.message)
+        link(self.origin,self.destination,self.target_is_directory)
 
     def is_dest_link_origin(self):
         installed = False
@@ -86,23 +86,24 @@ class Program:
         for file in self.files:
             if file.type == 'msg':
                 print('MESSAGE:    ' + file.message)
-            else:
-                try:
-                    if file.is_dest_link_origin():
-                        print(f'INFO   :    Already installed: {file.destination}' )
-                        continue
-                    if file.exist_dest() and file.type != 'backupFile':
-                        print('WARNING:    A different file already exits ... removing: ' + file.destination)
-                        file.rm()
-                    if file.exist_dest() and file.type == 'backupFile':
-                        print(f'INFO   :    Moving old file at: {file.destination}')
-                        print(f'            to {file.backup}')
-                        file.bkup()
-                    file.lnk()
-                    print('INFO   :    Linked to this file: ' + file.destination)
-                except FileExistsError:
-                    print('ERROR  :    This shouldn\'t happen, file exists error: ' + file.destination)
-                    pass
+                return
+
+            try:
+                if file.is_dest_link_origin():
+                    print(f'INFO   :    Already installed: {file.destination}' )
+                    continue
+                if file.exist_dest() and file.type != 'backupFile':
+                    print('WARNING:    A different file already exits ... removing: ' + file.destination)
+                    file.rm()
+                if file.exist_dest() and file.type == 'backupFile':
+                    print(f'INFO   :    Moving old file at: {file.destination}')
+                    print(f'            to {file.backup}')
+                    file.bkup()
+                file.lnk()
+                print('INFO   :    Linked to this file: ' + file.destination)
+            except FileExistsError:
+                print('ERROR  :    This shouldn\'t happen, file exists error: ' + file.destination)
+                pass
 
 
 def main():
