@@ -28,3 +28,25 @@ command = "OmniSharp"
 args = [ "--languageserver"]
 config = { useModernNet = false }
 timeout = 300
+
+[language-server.uiua-lsp]
+command = "uiua"
+args = ["lsp"]
+
+[[language]]
+name = "uiua"
+scope = "source.uiua"
+injection-regex = "uiua"
+file-types = ["ua"]
+roots = []
+auto-format = true
+comment-token = "#"
+language-servers = [ "uiua-lsp" ]
+indent = { tab-width = 2, unit = "  " }
+shebangs = ["uiua"]
+auto-pairs = {'(' = ')', '{' = '}', '[' = ']', '"' = '"'}
+
+[[grammar]]
+name = "uiua"
+source.git = "https://github.com/shnarazk/tree-sitter-uiua"
+source.rev = "f98842d75f52f7c864f7db9f5d39d745560d8200"
