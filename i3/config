@@ -63,6 +63,7 @@ bindsym $mod+shift+Return exec kitty --class floating_term
 for_window [class="floating_term"] floating enable
 # dimensions: 960 540 is `div 2 [1920 1080]`
 for_window [class="floating_term"] resize set 1080 540
+for_window [class="floating_term"] border pixel 0
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -266,7 +267,7 @@ set $base0E #ff6ac1
 set $base0F #b2643c
 
 default_border pixel 2
-
+# border_radius 10
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border    BG     Text   Indicator  Child Border
 client.focused          $base05 $base0E $base00   $base0D    $base0C
