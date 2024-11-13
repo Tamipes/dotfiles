@@ -60,11 +60,10 @@ bindsym $mod+Return exec kitty
 
 # Tami terminal config:
 bindsym $mod+shift+Return exec kitty --class floating_term
-for_window [class="floating_term"] floating enable
+for_window [class="floating_term"] floating enable, move position center
 # dimensions: 960 540 is `div 2 [1920 1080]`
 for_window [class="floating_term"] resize set 1080 540
 for_window [class="floating_term"] border pixel 0
-for_window [class="floating_term"] move center center
 
 # kill focused window
 bindsym $mod+Shift+q kill
