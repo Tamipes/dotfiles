@@ -27,6 +27,9 @@ alias ndev='nix develop .?submodules=1'
 alias dev='ndev'
 # Git aliases here:
 alias gs='git status'
+alias gl='git log --oneline --graph'
+alias gaa='git add .'
+alias gp='git push'
 
 if command -v helix &> /dev/null
 then
