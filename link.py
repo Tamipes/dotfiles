@@ -135,7 +135,7 @@ def main():
                 print("used directories are '~/.config/' and some files such as '~/.bashrc'.")
                 answer = input("Number: ")
                 if int(answer) > 0 and int(answer) <= len(allUsers) :
-                    osConfDir = f"/home/{allUsers[int(answer) - 1]}"
+                    osConfDir = f"/home/{allUsers[int(answer) - 1]}/.config"
                 elif int(answer) == 0:
                     answer = input("The user dir is:")
                     osConfDir = answer
@@ -192,9 +192,7 @@ def main():
             LinkFile([curr_dir, 'polybar', 'config.ini'], [osConfDir, 'polybar', 'config.ini'])
         ]),
         Program('rofi', [
-            LinkFile([curr_dir, 'rofi', 'theme.rasi'], [osConfDir, 'rofi', 'theme.rasi']),
-            LinkFile([curr_dir, 'rofi', 'rounded-common.rasi'], [osConfDir, 'rofi', 'rounded-common.rasi']),
-            LinkFile([curr_dir, 'rofi', 'config.rasi'], [osConfDir, 'rofi', 'config.rasi'])
+            LinkFile([curr_dir, 'rofi' ], [osConfDir, 'rofi' ], 'dir'),
         ]),
         Program('starship', [
             LinkFile([curr_dir, 'starship.toml'], [osConfDir, 'starship.toml'])
