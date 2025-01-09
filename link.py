@@ -153,6 +153,9 @@ def main():
         # Program('Fastfetch', [
         #     LinkFile([curr_dir, 'fastfetch_presets', 'tami'], ['/usr/share/fastfetch/presets', 'tami'])
         # ]),
+        Program('Fastfetch', [
+            LinkFile([curr_dir, 'fastfetch', 'config.jsonc'], [osConfDir, 'fastfetch', 'config.jsonc'])
+        ]),
         Program('Bash', [
             LinkFile([curr_dir,'bash','.bashrc'],[osConfDir,'..' , '.bashrc'], 'backupFile', [osConfDir, 'old.bashrc']),
             LinkFile([curr_dir,'bash','.profile'],[osConfDir,'..' , '.profile']),

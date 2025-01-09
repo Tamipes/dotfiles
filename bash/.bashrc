@@ -36,6 +36,16 @@ then
     alias hx='helix'
 fi
 
+if command -v hyfetch &> /dev/null
+then
+  if command -v fastfetch &> /dev/null
+  then
+    alias hyfetch='hyfetch -b fastfetch'
+  fi
+else
+  alias hyfetch='neofetch'
+fi
+
 # Prompt engineering : D
 if [[ -n "$IN_NIX_SHELL" ]]; then
     echo something
