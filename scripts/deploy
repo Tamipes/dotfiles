@@ -10,8 +10,8 @@ DEPLOY_HOSTNAME="elaina"
 # pushd /etc/nixos
 pushd $CONFIG_PATH
 
-git restore nixos-deploy.log
-git restore nixos-switch.log
+# git restore nixos-deploy.log
+# git restore nixos-switch.log
 git pull
 
 # Edit your config
@@ -38,11 +38,11 @@ fi
 # Get current generation metadata
 current="$DEPLOY_HOSTNAME - $(\ssh $SSH_HOST -t "nixos-rebuild list-generations | cat" | grep current | sed 's/ *[*] *//' | sed 's/current/generation/' | sed 's/[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}//')"
 
-echo
-echo "Git shenanigans: "
+# echo
+# echo "Git shenanigans: "
 # Commit all changes with the generation metadata
-git commit -am "$current"
-git push
+# git commit -am "$current"
+# git push
 # Back to where you were
 popd
 
