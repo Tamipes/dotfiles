@@ -43,7 +43,12 @@ then
     alias hyfetch='hyfetch -b fastfetch'
   fi
 else
-  alias hyfetch='neofetch'
+  if command -v fastfetch &> /dev/null
+  then
+    alias hyfetch='fastfetch'
+  else
+    alias hyfetch='neofetch'
+  fi
 fi
 
 # Prompt engineering : D
