@@ -220,7 +220,7 @@ bindsym $mod+r mode "resize"
 
 # _________________________ Tami customize from here _________________
 
-for_window [class="vesktop"] move container to workspace $ws9; workspace number $ws9
+for_window [class="vesktop"] move container to workspace $ws9
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
