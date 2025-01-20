@@ -1,6 +1,6 @@
 configuration {
   modi: "drun";
-  hover-select: true;
+  hover-select: false;
   icon-theme: "Tela-circle-dracula";
   me-select-entry: "";
   me-accept-entry: [ MousePrimary ];
