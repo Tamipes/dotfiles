@@ -2,6 +2,10 @@
 name = "javascript"
 auto-format = true
 
+[[language]]
+name = "lua"
+auto-format = true
+
 [[lanugage]]
 name = "c-sharp"
 auto-format = true
