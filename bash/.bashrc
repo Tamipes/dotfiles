@@ -28,6 +28,7 @@ alias dev='ndev'
 # Git aliases here:
 alias gs='git status'
 alias gl='git log --oneline --graph'
+alias gla='git log --oneline --graph --all'
 alias gaa='git add .'
 alias gp='git push'
 
