@@ -9,6 +9,7 @@ line-number = "relative"
 cursorline = true
 popup-border = "all"
 # bufferline = "always" // have to think about this
+color-modes = true
 
 [editor.soft-wrap]
 enable = true
