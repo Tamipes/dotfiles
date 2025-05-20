@@ -221,11 +221,15 @@ bindsym $mod+r mode "resize"
 # _________________________ Tami customize from here _________________
 
 for_window [class="vesktop"] move container to workspace $ws9
+
 # Make the currently focused window a scratchpad
+#       $mod+Shift+` --- ` is the zero on US keyboard
 bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+grave move scratchpad
 
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+bindsym $mod+grave scratchpad show
 
 bindsym $mod+n exec --no-startup-id flameshot gui
 exec --no-startup-id picom -b
