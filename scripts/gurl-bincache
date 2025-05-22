@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+url="https://nix-cache.tami.moe"
+hash=$(echo "$1" | sed "s/\/nix\/store\///" | sed "s/-.*$//")
+# echo $hash
+curl "$url/$hash.narinfo"
