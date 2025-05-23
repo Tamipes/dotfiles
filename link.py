@@ -206,6 +206,9 @@ def main():
         ]),
         Program('ghci', [
             LinkFile([curr_dir, '.ghci'], [osConfDir, '..' ,'.ghci'])
+        ]),
+        Program('ulauncher', [
+            LinkFile([curr_dir, 'ulauncher'], [osConfDir, 'ulauncher'],'dir')
         ])
     ]
 
