@@ -1,1 +1,9 @@
-{}
+{
+    "com.github.doekeb.ulauncher-gnome-calculator": {
+        "id": "com.github.doekeb.ulauncher-gnome-calculator",
+        "url": "https://github.com/Doekeb/ulauncher-gnome-calculator",
+        "updated_at": "2025-05-23T15:21:28.842490",
+        "last_commit": "f1efd61c6ecd1160b007bca1f90511a346378e64",
+        "last_commit_time": "2021-05-03T15:30:01"
+    }
+}
