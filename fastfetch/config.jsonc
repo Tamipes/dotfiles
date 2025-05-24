@@ -6,7 +6,7 @@
     "os",
     {
       "type": "command",
-      "text": "nixos-rebuild list-generations | grep current | sed 's/ *[*]*$//' | sed 's/current/generation/' | sed 's/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}//' ",
+      "text": "nixos-rebuild-ng list-generations | grep True | sed 's/^\\([0-9]\\+\\)[[:space:]]\\+/\\1 - /g' | awk '{print $1, $2, $3, $4, $5, $6}'" ,
       "key": "Generation"
     },
     "host",
