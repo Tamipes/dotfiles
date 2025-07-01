@@ -58,7 +58,7 @@ fi
 
 # Prompt engineering : D
 if [[ -n "$IN_NIX_SHELL" ]]; then
-    echo something
+  echo Entered nix shell!
   label="nix-shell"
   if [[ "$name" != "$label" ]]; then
     label="$label:$name"
