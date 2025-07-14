@@ -120,7 +120,7 @@ def main():
             print()
             print("User detected as root, do you want to choose a user in /home? If not the")
             print("script will instead install to the root user.")
-            answer = input("Do you want to choose in /home? (y/n)")
+            answer = input("Do you want to choose in /home? (y/n): ")
             print()
             if answer.lower() == "y":
                 allUsers = next(os.walk(r'/home'))[1]
