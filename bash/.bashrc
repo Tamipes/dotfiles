@@ -12,6 +12,10 @@ if [ -f "$HOME/.config/old.bashrc" ]; then
     . "$HOME/.config/old.bashrc"
 fi
 
+if [[ $EUID -eq 0 ]]; then
+    PSCN='\e[1;31m'
+fi
+
 set colored-stats on
 
 # Aliases come here
