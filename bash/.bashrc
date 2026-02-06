@@ -125,10 +125,17 @@ cd_with_fzf() {
   dir=$(find . -maxdepth 1 -type d | fzf) && cd "$dir"
 }
 
-#nnn
+# nnn config
+
+# this if checks if the script is run as root
+if [ "$EUID" = "0" ]; then
+  export NNN_FIFO=/tmp/nnn_root.fifo
+else
+  export NNN_FIFO=/tmp/nnn.fifo
+fi
+
 if command -v nnn &> /dev/null
 then
-  export NNN_FIFO=/tmp/nnn.fifo
   export NNN_PLUG='p:preview-tui;/:autojump'
   n ()
   {
