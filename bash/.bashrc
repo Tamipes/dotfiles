@@ -120,6 +120,12 @@ then
   eval "$(zoxide init --cmd cd bash)"
 fi
 
+# Gurl
+if command -v gurl &> /dev/null
+then
+  eval "$(gurl init)"
+fi
+
 cd_with_fzf() {
   local dir
   dir=$(find . -maxdepth 1 -type d | fzf) && cd "$dir"
