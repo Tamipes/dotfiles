@@ -25,9 +25,9 @@ alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
 # Nix aliases here:
-alias nrun='nix run .?submodules=1 --'
-alias nbuild='nix build .?submodules=1'
-alias ndev='nix develop .?submodules=1'
+alias nrun='nix run . --'
+alias nbuild='nix build .'
+alias ndev='nix develop .'
 alias dev='ndev'
 # Git aliases here:
 alias gs='git status'
