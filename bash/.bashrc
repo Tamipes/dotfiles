@@ -38,15 +38,31 @@ alias gp='git push'
 gdd() {
   git diff HEAD~$(($1 + 1)) HEAD~$1
 }
+
+# ##### Tacit shell code be like: #####
+
+u() { i | rot echo "$@" | map uiua eval; }
+# `rot` is used so even if emtpy it still continues(map filters out empty lines and runs nothing on them)
+# example:
+# echo "1 2" | u "+"
+
+identity() { if [ -t 0 ]; then printf ""; else exec cat; fi }
+# source for `if [ -t 0 ]`
+# https://stackoverflow.com/questions/911168/how-can-i-detect-if-my-shell-script-is-running-through-a-pipe
+alias i="identity"
+
 map() {
   if [[ "$*" == *'{}'* ]]; then
-    xargs -I{} "$@"
+    exec xargs -I{} "$@"
   else
-    xargs -I{} "$@" '{}'
+    exec xargs -I{} "$@" '{}'
   fi
 }
 alias m='map'
 alias x='xargs' # this should work similar to map() in simple cases; `which hx | x readlink`
+alias rotate="xargs" # TODO: switch the stdout with args; currently only copies stdout to the end of args
+alias r='rotate'
+alias rot='rotate'
 
 if command -v helix &> /dev/null
 then
