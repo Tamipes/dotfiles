@@ -38,6 +38,15 @@ alias gp='git push'
 gdd() {
   git diff HEAD~$(($1 + 1)) HEAD~$1
 }
+map() {
+  if [[ "$*" == *'{}'* ]]; then
+    xargs -I{} "$@"
+  else
+    xargs -I{} "$@" '{}'
+  fi
+}
+alias m='map'
+alias x='xargs' # this should work similar to map() in simple cases; `which hx | x readlink`
 
 if command -v helix &> /dev/null
 then
