@@ -41,6 +41,7 @@ alias gl='git log --oneline --graph'
 alias gla='git log --oneline --graph --all'
 alias gaa='git add .'
 alias gp='git push'
+alias gd='git diff'
 gdd() {
   git diff HEAD~$(($1 + 1)) HEAD~$1
 }
