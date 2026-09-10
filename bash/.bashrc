@@ -16,7 +16,12 @@ if [[ $EUID -eq 0 ]]; then
     PSCN='\e[1;31m'
 fi
 
+# Shell options
 set colored-stats on
+
+# Env vars.
+export PATH=$PATH:~/.tamipes/scripts
+export EDITOR=hx
 
 # Aliases come here
 alias cal='cal -m'
@@ -123,10 +128,6 @@ PS1+='\h\e[0m'
 PS1+=$psx
 PS1+=': \e[0;34m\w\e[0m\n\$ '
 
-
-# Env vars.
-export PATH=$PATH:~/.tamipes/scripts
-export EDITOR=hx
 
 # Kitty
 if test -n "$KITTY_INSTALLATION_DIR"; then
