@@ -18,6 +18,7 @@ fi
 
 # Shell options
 set colored-stats on
+shopt -s globstar
 
 # Env vars.
 export PATH=$PATH:~/.tamipes/scripts
