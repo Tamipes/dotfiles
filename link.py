@@ -104,9 +104,36 @@ class Program:
             except FileExistsError:
                 print('ERROR  :    This shouldn\'t happen, file exists error: ' + file.destination)
                 pass
+    def uninstall(self):
+        for file in self.files:
+            if file.type == 'msg':
+                print('MESSAGE:    ' + file.message)
+                return
 
+            try:
+                if file.is_dest_link_origin():
+                    print(f'INFO   :    Uninstalling this path: {file.destination}' )
+                    file.rm()
+                else:
+                    print(f'INFO   :    Path is foreign(it was not installed?): {file.destination}' )
+            except FileExistsError:
+                print('ERROR  :    This shouldn\'t happen, file exists error: ' + file.destination)
+                pass
 
 def main():
+    print("The default operation is to install the dotfiles,but you ")
+    print("can choose not to, and to instead uninstall them.")
+    install_choice = input("Do you want to install?(y/n)")
+    match install_choice:
+        case "n":
+            install_choice = "uninstall"
+        case "":
+            install_choice = "install"
+        case "y":
+            install_choice = "install"
+        case _:
+            install_choice = "install"
+
     curr_dir = os.getcwd()
 
     if platform.system() == Windows:
@@ -221,11 +248,17 @@ def main():
     if platform.system() == Windows:
         for program in [x for x in programs if x.name == "Helix"]:
             print(f'--- Installing: {program.name} ---')
-            program.install()
+            if install_choice == "install":
+                program.install()
+            else:
+                program.uninstall()
     else:
         for program in programs:
             print(f'--- Installing: {program.name} ---')
-            program.install()
+            if install_choice == "install":
+                program.install()
+            else:
+                program.uninstall()
 
     print("")
     print("Script execution completed. All required links created.")
